@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+</head>
+<body>
+	<h1>My Title</h1>
+	<p>My name</p>
+	<hr>
+	<div id="temp1"></div>
+	<script>
+		var source = "<h1>{{title}}</h1><p>{{name}}</p>";
+		var template = Handlebars.compile(source);//함수 리턴
+		var data = {title:"타이틀",name:"이쁘니"};
+		
+		$("#temp1").html(template(data));
+	</script>
+	<div id="temp2"></div>
+	<script>
+		var s2 = "<h1><p>{{name}}</p><p>{{userid}}</p><p>{{addr}}</p></h1>";
+		var t2 =Handlebars.compile(s2);
+		var data = {name:"홍길동",userid:"user00",addr:"대구"};
+		
+		$("#temp2").html(t2(data));
+	</script>
+</body>
+</html>

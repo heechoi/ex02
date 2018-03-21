@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+</head>
+<body>
+
+	<div id="temp"></div>
+	<script id="template" type="text/x-handlebars-template">
+			<h1>{{name}}</h1>
+			<div>
+				<span>{{userid}}</span>
+				<span>{{addr}}</span>
+			</div>
+	</script>
+	
+	<script>
+		var source = $("#template").html();
+		var t_fn = Handlebars.compile(source);
+		var data = {name:"홍길동",userid:"user00",addr:"대구"};
+		
+		$("#temp").html(t_fn(data));
+	</script>
+</body>
+</html>

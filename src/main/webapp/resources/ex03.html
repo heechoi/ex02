@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+</head>
+<body>
+	<ul id="list">
+	</ul>
+	
+	<script id="template" type="text/x-handlebars-template">
+		{{#each.}}
+		<li class="item">
+			<div>{{rno}}</div>
+			<div>{{replytext}}</div>
+			<div>{{tempdate replydate}} {{tempdate2 replydate}}</div>
+		</li>
+		{{/each}}
+	</script>
+	<script>
+		
+		Handlebars.registerHelper("tempdate",function(value){
+			
+			var dateObj = new Date(value);
+			var year = dateObj.getFullYear();
+			var month = dateObj.getMonth()+1;
+			var date = dateObj.getDate();
+			
+			return year+"-"+month+"-"+date;
+			
+		});
+		
+		var arrWeek = ["일","월","화","수","목","금","토"];
+		
+		Handlebars.registerHelper("tempdate2",function(value){
+			var dateObj = new Date(value);
+			var week = dateObj.getDay();
+			
+			return arrWeek[week];
+		});
+		
+	 	 var source=$("#template").html();
+	 	 var t_fn = Handlebars.compile(source);
+	 	 var data = [
+	 	            {rno:1,replytext:"댓글1",replydate:new Date()},
+	 	            {rno:2,replytext:"댓글2",replydate:new Date()},
+	 	           	{rno:3,replytext:"댓글3",replydate:new Date()},
+	 	          	{rno:4,replytext:"댓글4",replydate:new Date()},
+	 	         	{rno:5,replytext:"댓글5",replydate:new Date()}
+	 	             ];
+	 	 $("#list").html(t_fn(data));
+	</script>
+</body>
+</html>
